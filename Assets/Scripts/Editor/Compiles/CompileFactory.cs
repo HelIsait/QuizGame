@@ -1,5 +1,9 @@
 #nullable enable
 using Editor.Compiles.Uses;
+using Editor.Compiles.Uses.PC;
+using Editor.Compiles.Uses.PC.Linux;
+using Editor.Compiles.Uses.PC.MacOS;
+using Editor.Compiles.Uses.WebGL;
 using Uitls;
 using UnityEditor;
 using UnityEngine;
@@ -34,8 +38,29 @@ namespace Compiles
                 new ExtensionWhenFolderCompileFactory(
                     new SimpleCompileFactory(BuildTarget.StandaloneOSX),
                     ".app"
+                ),
+                new ExtensionWhenFolderCompileFactory(
+                    new WindowsCompileFactory(),
+                    ".exe"
+                    ),
+                new ExtensionWhenFolderCompileFactory(
+                    new WindowsCompileFactory(BuildTarget.StandaloneWindows64),
+                    ".exe"
+                    ),
+                new ExtensionWhenFolderCompileFactory(
+                    new MacOsCompileFactory(),
+                    ".dmg"
+                    ),
+                new ExtensionWhenFolderCompileFactory(
+                    new LinuxCompileFactory(),
+                    ".exe"
+                    ),
+                new ExtensionWhenFolderCompileFactory(
+                    new WebGlCompileFactory(),
+                    ".gltf")
                 )
-            ).Compile(
+                
+                .Compile(
                 EditorUtility.OpenFolderPanel(
                     "Choose folder",
                     "Assets",
