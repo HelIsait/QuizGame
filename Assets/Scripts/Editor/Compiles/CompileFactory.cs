@@ -20,12 +20,6 @@ namespace Compiles
         [MenuItem("CompileFactory/Compile")]
         public static void Compile()
         {
-            // if (path.Split('.')!.Cache(out var pathElements).Length > 1
-            //     && pathElements.Last().Length >= 2) //.txt .apk .jpg .mp3
-            // {
-            //     throw new ArgumentException($"Path must not contains extension {path}");
-            // }
-
             new ManyCompileFactory(
                 new ExtensionWhenFolderCompileFactory(
                     new ApkCompileFactory(),
